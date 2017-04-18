@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="HololensTimerUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HololensTimerUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Textbox" VerticalAlignment="Top" Height="150
+                 " Width="850" RenderTransformOrigin="-0.004,0.271" TextChanged="textBox_TextChanged" FontSize="72" TextAlignment="Center"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Height="132" Width="425" FontSize="48"/>
+        <Button x:Name="button_Copy" Content="Button" HorizontalAlignment="Left" Margin="430,150,-2,0" VerticalAlignment="Top" Height="132" Width="425" RenderTransformOrigin="-0.69,-0.241" FontSize="48"/>
+
+    </Grid>
+</Page>
