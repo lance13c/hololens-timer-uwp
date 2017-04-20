@@ -161,10 +161,10 @@ namespace HololensTimerUWP
             {
                 try
                 {
-                    anyTrue = true;
                     string val = input.Substring(subStart, subEnd);
                     val = val.Trim();                                   // Remove white space
                     tempMin = int.Parse(val);                           // Might Error
+                    anyTrue = true;
                 } catch (System.ArgumentOutOfRangeException e)
                 {
                     Debug.WriteLine(e);
@@ -240,14 +240,16 @@ namespace HololensTimerUWP
             {
                 valid = false;
             }
+
             if (valid)
             {
                 try
                 {
-                    anyTrue = true;
+                    
                     string val = input.Substring(subStart, subEnd);
                     val = val.Trim();                                   // Remove white space
                     tempSec = int.Parse(val);                           // Might Error
+                    anyTrue = true;
                 }
                 catch (System.ArgumentOutOfRangeException e)
                 {
@@ -255,8 +257,57 @@ namespace HololensTimerUWP
                 }
             }
 
-            // 4 minutes
+            // 33:22 Time format
+            valid = true;
+            if (input.Length == 5 && input.ElementAt<char>(2) == ':')
+            {
+                try
+                {
+                    tempMin = int.Parse(input.Substring(0, 2));
+                    tempSec = int.Parse(input.Substring(3, 5));
 
+                    anyTrue = true;
+                } catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+            } else
+            {
+                valid = false;
+            }
+
+            // 4 integer format
+            valid = true;
+            if (input.Length == 4)
+            {
+                bool allDigits = true;
+                foreach (char c in input) {
+                    if (!char.IsDigit(c))
+                    {
+                        allDigits = false;
+                    }
+                }
+
+                if (allDigits)
+                {
+                    try
+                    {
+                        tempMin = int.Parse(input.Substring(0, 2));
+                        tempSec = int.Parse(input.Substring(2, 4));
+
+                        anyTrue = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e);
+                    }
+                }
+                
+            }
+            else
+            {
+                valid = false;
+            }
 
             // Clear, Set, and Display
             if (anyTrue)
@@ -270,6 +321,7 @@ namespace HololensTimerUWP
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             this.holoTimer.ResetTime();
+            start.Content = "Start";
         }
     }
 }
